@@ -157,7 +157,9 @@ function loadPageContent(currentUser) {
     if (restricted) {
         restricted.style.display = 'block';
     }
-
+    if (currentUser.username === ADMIN_USERNAME) {
+        showAdminPanel();
+    }
     if (path.includes('personal.html')) {
         displayPersonnel(currentUser);
     } else if (path.includes('locations.html')) {

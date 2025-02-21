@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fundación SCP - Acceso Restringido</title>
+    <title>Fundación SCP</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,23 +15,22 @@
             <li><a href="locations.html">Ubicaciones</a></li>
             <li><a href="reports.html">Informes</a></li>
         </ul>
-        <button id="logoutBtn">Cerrar Sesión</button>
+        <div class="nav-controls">
+            <button onclick="toggleTheme()" class="theme-toggle">
+                <span class="theme-icon">🌓</span>
+            </button>
+            <button id="logoutBtn">Cerrar Sesión</button>
+        </div>
     </nav>
+
     <main>
-        <div class="public">
-            <section id="hero">
-                <h1>FUNDACIÓN SCP</h1>
-                <p>Asegurar. Contener. Proteger.</p>
-            </section>
-            <section id="public-info">
-                <h2>Información Pública</h2>
-                <p>La Fundación SCP es una organización dedicada a la contención y estudio de anomalías.</p>
-            </section>
+        <!-- Here the admin panel will appear automatically when admin logs in -->
+        <div class="restricted" data-level="1">
+            <!-- Your existing content -->
         </div>
     </main>
-    <footer>
-        <p>⚠️ ADVERTENCIA: Acceso restringido solo a personal autorizado ⚠️</p>
-    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
+
