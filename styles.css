@@ -1,0 +1,167 @@
+:root {
+    --primary-color: #1a1a1a;
+    --accent-color: #c41e3a;
+    --text-color: #ffffff;
+    --secondary-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+}
+
+.main-nav {
+    background-color: var(--accent-color);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.main-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#logoutBtn {
+    background: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+#hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    text-align: center;
+}
+
+section {
+    padding: 2rem;
+    margin: 1rem 0;
+}
+
+.scp-item, .classified-doc, .admin-controls {
+    background: var(--secondary-color);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-left: 4px solid var(--accent-color);
+}
+
+.restricted {
+    border: 1px solid var(--accent-color);
+    margin: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.user-item, .location-item, .report-item {
+    background: var(--secondary-color);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-left: 4px solid var(--accent-color);
+}
+
+.scp-item {
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 20px;
+    margin: 10px 0;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--accent-color);
+}
+
+.scp-item:hover {
+    transform: translateX(10px);
+    background: rgba(196, 30, 58, 0.1);
+}
+
+.read-more {
+    color: var(--accent-color);
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.scp-full-detail {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.scp-image {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.scp-image img {
+    width: 100%;
+    height: auto;
+    border: 2px solid var(--accent-color);
+}
+
+.section {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border-left: 4px solid var(--accent-color);
+}
+
+.incident {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(196, 30, 58, 0.1);
+}
+
+footer {
+    background: var(--secondary-color);
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.main-nav a:hover {
+    color: var(--secondary-color);
+}
+
+#logoutBtn:hover {
+    background: var(--accent-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.restricted {
+    animation: fadeIn 1s ease-in;
+}

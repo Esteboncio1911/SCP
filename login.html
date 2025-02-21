@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Foundation - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <form id="loginForm" onsubmit="return validateLogin(event)">
+            <h2>ACCESO RESTRINGIDO</h2>
+            <input type="text" id="username" placeholder="Nombre de usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Acceder</button>
+        </form>
+    </div>
+    <script>
+        function validateLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const users = [
+                { username: "investigador1", password: "scp123", level: "1" },
+                { username: "investigador2", password: "scp456", level: "2" },
+                { username: "admin", password: "scp789", level: "3" },
+                { username: "omni", password: "omni", level: "6" }
+            ];
+            
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                sessionStorage.setItem('currentUser', JSON.stringify(user));
+                window.location.href = 'index.html';
+                return true;
+            } else {
+                alert('Credenciales incorrectas');
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
