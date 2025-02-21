@@ -198,6 +198,15 @@ function displaySCPsList(currentUser) {
                         <p class="read-more">Click para más información</p>
                     </div>
                 `;
+            } else {
+                scpList.innerHTML += `
+                    <div class="scp-item">
+                        <h4>SCP-${scp.id}</h4>
+                        <p>Clase: ${scp.class}</p>
+                        <p>[INFORMACIÓN CLASIFICADA - NIVEL ${scp.level} REQUERIDO]</p>
+                        <p class="read-more">Acceso denegado</p>
+                    </div>
+                `;
             }
         });
     }
