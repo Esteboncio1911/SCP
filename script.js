@@ -169,6 +169,26 @@ function loadPageContent(currentUser) {
     }
 }
 
+// Add this function to your script.js
+function showAdminPanel() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (currentUser && currentUser.username === ADMIN_USERNAME) {
+        const adminSection = `
+            <div class="admin-panel">
+                <h3>Panel de Administración</h3>
+                <div class="admin-controls">
+                    <button onclick="downloadLogs()">Descargar Logs</button>
+                    <div id="logViewer">
+                        <h4>Últimos Accesos:</h4>
+                        <div id="recentLogs"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.querySelector('main').insertAdjacentHTML('afterbegin', adminSection);
+    }
+}
+
 function displayPersonnel(currentUser) {
     const usersList = document.getElementById('users-list');
     if (usersList) {
