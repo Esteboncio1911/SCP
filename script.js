@@ -171,25 +171,33 @@ function loadPageContent(currentUser) {
     }
 }
 
-// Add this function to your script.js
+// Update the showAdminPanel function
 function showAdminPanel() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     if (currentUser && currentUser.username === ADMIN_USERNAME) {
         const adminSection = `
             <div class="admin-panel">
-                <h3>Panel de Administración</h3>
+                <h3>Panel de Control Administrativo</h3>
                 <div class="admin-controls">
-                    <button onclick="downloadLogs()">Descargar Logs</button>
+                    <button onclick="downloadLogs()">Descargar Registros</button>
                     <div id="logViewer">
-                        <h4>Últimos Accesos:</h4>
+                        <h4>Registro de Actividad:</h4>
                         <div id="recentLogs"></div>
                     </div>
                 </div>
             </div>
         `;
-        document.querySelector('main').insertAdjacentHTML('afterbegin', adminSection);
+        document.querySelector('.restricted').insertAdjacentHTML('beforebegin', adminSection);
     }
 }
+
+// Add this to ensure the panel appears
+document.addEventListener('DOMContentLoaded', function() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (currentUser && currentUser.username === ADMIN_USERNAME) {
+        showAdminPanel();
+    }
+});
 
 function displayPersonnel(currentUser) {
     const usersList = document.getElementById('users-list');
