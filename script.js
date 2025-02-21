@@ -1,19 +1,45 @@
-// Secure logging system - Only accessible by admin
-const ADMIN_USERNAME = "admin"; // You should change this
-const ADMIN_PASSWORD = "scp789"; // You should change this
+// Add this at the beginning of your script.js
+const ADMIN_USERNAME = "admin";
 
-class SecureLogger {
-    static logActivity(user, action) {
-        if (currentUser.username === ADMIN_USERNAME) {
-            const logEntry = `${new Date().toISOString()} | ${user} | ${action}\n`;
-            const blob = new Blob([logEntry], { type: 'text/plain' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `secure_log_${Date.now()}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
+// Logging system that only works for admin
+function createLog(action, details) {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    
+    if (currentUser && currentUser.username === ADMIN_USERNAME) {
+        const timestamp = new Date().toISOString();
+        const logEntry = `
+            Time: ${timestamp}
+            User: ${details.user}
+            Action: ${action}
+            IP: ${details.ip || 'Unknown'}
+            Page: ${window.location.pathname}
+            Browser: ${navigator.userAgent}
+            --------------------------
+        `;
+        
+        const blob = new Blob([logEntry], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `scp_log_${Date.now()}.txt`;
+        a.click();
+    }
+}
+
+// Add this to your login validation
+function validateLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    const user = users.find(u => u.username === username && u.password === password);
+    
+    if (user) {
+        createLog('LOGIN', {
+            user: username,
+            ip: 'Client-IP'
+        });
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
+        window.location.href = 'index.html';
     }
 }
 
