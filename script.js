@@ -52,24 +52,27 @@ const scps = [
             }
         ]
     },
-    {
-        id: "1002",
-        name: "████████",
-        class: "Apollyon",
-        level: "5",
-        preview: "Algunos lo describen como una criatura del inframundo, otros como un angel...",
-        fullDescription: "El Scp 1002 “Oscuro Ángel” es una criatura paralela proveniente de otra dimension, cuya aparicion surgió despues de que un portal interdimensional se abriera en 	el norte. Dias despues de su cierre, se detectaron rasgos de inundaciones o avalanchas nunca antes vistas. Cuando empeoro todo, un equipo E-11 se dirigio hacia el lugar a hacer la 	expedicion. En la busqueda, se detectaron signos de vida cerca, ya que habian huellas tapadas por la nieve. Casi al limite de cancelar la busqueda, una avalancha cayó encima del 	escuadrón, un sonido extraño aullaba y parecia decir conjuros o algun tipo de magia. Las cámaras del escuadrón quedaron inutilizables por los golpes y no hubo ni rastros del 	escuadrón el cual desapareció despues de la avalancha. El Consejo estaba enfadado, era una amenaza grave, cuyo poder no puede pertenecer a este lugar. El caso quedó en busqueda 	durante un largo periodo. . . 2 Años despues. . . El Dr. Michael fue encomendado a buscar unos documentos de 999, cuando entro en una sala que nunca habia visto antes miró en el 	cajon clasificado en keter, y encontró unos papeles antiguos y arrugados. En esos documentos, habian evidencias de un Scp denominado 1002. Un hechicero o mago con mucho poder que 	supuestamente escapó de las instalaciones hace mucho tiempo. Su descripcion era tal que asi: Una criatura blanca con unas extrañas figuras y letras que parecian tener un conjuro en 	ellas, consigo llevaba un baston con una piedra que brillaba. En su cintura llevaba dos espadas de fuego negro. Tenia una cola blanca e intimidante y una capucha que oscurocia su 	cara. Era alto y fuerte, con multiples hechizos que casi nadie conocia. Y siempre llevaba un cuchillo pequeño, con letras escritas y un color gris. Esta anomala criatura fue 	capturada en 1931, cuando estaba en su cueva con su padre, salio para buscar algo que cenar. Cuando salio, se encontro con algo similar a una criatura de su planeta y rapidamente 	se acerco hacia ella. Justo apunto de cazarla, el mismo cayo en su propia trampa y fue encerrado por redes y barras de metal. Su padre, cuando le parecio raro su tardanza, salio a 	buscarlo, y solo encontro su amuleto tirado junto con sangre en los alrededores. Unos años despues, el scp 1002 escapo y cuando encontro a su padre estaba muerto, no tenia alimento 	y murio en su busqueda. Le recordo a su madre, la cual murio protegiondolos de unos lobos hambrientos que entraron a su hogar.",
-        containment: "El SCP-1002 debe ser contenido en una celda de 100x100 metros, con una altura de 5 metros. El SCP-1002 debé creer que se encuentra en un lugar natural y arbolado.
-	La comida será proporcionada de una manera discreta, dejando a este SCP cazar.",
-        image: "scp1002.jpg",
-        procedures: "No se permite el contacto directo del personal con este SCP.",
-        incidents: [
-            {
-                date: "██/██/████",
-                description: "████████████████████████████████████"
-            }
-        ]
-    }
+{
+    id: "1002",
+    name: "Oscuro Ángel",
+    class: "Apollyon",
+    level: "5",
+    preview: "Algunos lo describen como una criatura del inframundo, otros como un ángel...",
+    fullDescription: "El SCP-1002, conocido como 'Oscuro Ángel', es una criatura paralela proveniente de otra dimensión, cuya aparición surgió después de que un portal interdimensional se abriera en el norte. Días después de su cierre, se detectaron rasgos de inundaciones o avalanchas nunca antes vistas. Cuando empeoró todo, un equipo E-11 se dirigió hacia el lugar a hacer la expedición. En la búsqueda, se detectaron signos de vida cerca, ya que había huellas tapadas por la nieve. Casi al límite de cancelar la búsqueda, una avalancha cayó encima del escuadrón, un sonido extraño aullaba y parecía decir conjuros o algún tipo de magia. Las cámaras del escuadrón quedaron inutilizables por los golpes y no hubo ni rastros del escuadrón el cual desapareció después de la avalancha. El Consejo estaba enfadado, era una amenaza grave, cuyo poder no puede pertenecer a este lugar. El caso quedó en búsqueda durante un largo periodo... 2 Años después... El Dr. Michael fue encomendado a buscar unos documentos de 999, cuando entró en una sala que nunca había visto antes miró en el cajón clasificado en keter, y encontró unos papeles antiguos y arrugados. En esos documentos, había evidencias de un SCP denominado 1002. Un hechicero o mago con mucho poder que supuestamente escapó de las instalaciones hace mucho tiempo. Su descripción era tal que así: Una criatura blanca con unas extrañas figuras y letras que parecían tener un conjuro en ellas, consigo llevaba un bastón con una piedra que brillaba. En su cintura llevaba dos espadas de fuego negro. Tenía una cola blanca e intimidante y una capucha que oscurecía su cara. Era alto y fuerte, con múltiples hechizos que casi nadie conocía. Y siempre llevaba un cuchillo pequeño, con letras escritas y un color gris. Esta anómala criatura fue capturada en 1931, cuando estaba en su cueva con su padre, salió para buscar algo que cenar. Cuando salió, se encontró con algo similar a una criatura de su planeta y rápidamente se acercó hacia ella. Justo a punto de cazarla, él mismo cayó en su propia trampa y fue encerrado por redes y barras de metal. Su padre, cuando le pareció rara su tardanza, salió a buscarlo, y solo encontró su amuleto tirado junto con sangre en los alrededores. Unos años después, el SCP-1002 escapó y cuando encontró a su padre estaba muerto, no tenía alimento y murió en su búsqueda. Le recordó a su madre, la cual murió protegiéndolos de unos lobos hambrientos que entraron a su hogar.",
+    containment: "El SCP-1002 debe ser contenido en una celda de 100x100 metros, con una altura de 5 metros. El SCP-1002 debe creer que se encuentra en un lugar natural y arbolado. La comida será proporcionada de una manera discreta, dejando a este SCP cazar.",
+    image: "scp1002.jpg",
+    procedures: "No se permite el contacto directo del personal con este SCP. Todo personal debe mantener una distancia mínima de seguridad de 50 metros. En caso de avistamiento fuera de su celda, activar inmediatamente el protocolo de contención Omega-7.",
+    incidents: [
+        {
+            date: "██/██/1931",
+            description: "Primera captura documentada del espécimen"
+        },
+        {
+            date: "██/██/████",
+            description: "Escape y posterior redescubrimiento de documentación por el Dr. Michael"
+        }
+    ]
+}
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
