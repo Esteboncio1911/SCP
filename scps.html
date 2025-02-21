@@ -15,18 +15,41 @@
             <li><a href="locations.html">Ubicaciones</a></li>
             <li><a href="reports.html">Informes</a></li>
         </ul>
-        <button id="logoutBtn">Cerrar Sesión</button>
+        <div class="nav-controls">
+            <button onclick="toggleTheme()" class="theme-toggle">
+                <span class="theme-icon">🌓</span>
+            </button>
+            <button id="logoutBtn">Cerrar Sesión</button>
+        </div>
     </nav>
+
+    <div class="breadcrumbs">
+        <span>Inicio</span> > <span>Lista SCPs</span>
+    </div>
+
     <main>
+        <div class="search-container">
+            <input type="text" id="scpSearch" placeholder="Buscar SCPs...">
+            <div class="filter-buttons">
+                <button onclick="filterSCPsByClass('Safe')">Safe</button>
+                <button onclick="filterSCPsByClass('Euclid')">Euclid</button>
+                <button onclick="filterSCPsByClass('Keter')">Keter</button>
+                <button onclick="filterSCPsByClass('Apollyon')">Apollyon</button>
+            </div>
+        </div>
+
         <div class="restricted" data-level="1">
             <section id="scp-list">
-                <!-- El contenido se generará dinámicamente -->
+                <!-- Dynamic content -->
             </section>
         </div>
     </main>
+
     <footer>
         <p>⚠️ ADVERTENCIA: Acceso restringido solo a personal autorizado ⚠️</p>
     </footer>
+
+    <script src="security.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

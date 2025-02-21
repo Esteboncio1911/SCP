@@ -1,3 +1,23 @@
+// Secure logging system - Only accessible by admin
+const ADMIN_USERNAME = "admin"; // You should change this
+const ADMIN_PASSWORD = "scp789"; // You should change this
+
+class SecureLogger {
+    static logActivity(user, action) {
+        if (currentUser.username === ADMIN_USERNAME) {
+            const logEntry = `${new Date().toISOString()} | ${user} | ${action}\n`;
+            const blob = new Blob([logEntry], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `secure_log_${Date.now()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    }
+}
+
+// User data
 const users = [
     { username: "investigador1", password: "scp123", level: "1" },
     { username: "investigador2", password: "scp456", level: "2" },
