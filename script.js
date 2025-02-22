@@ -202,15 +202,15 @@ document.addEventListener('DOMContentLoaded', function() {
 function displayPersonnel(currentUser) {
     const usersList = document.getElementById('users-list');
     if (usersList) {
-        usersList.innerHTML = '<h3>Lista de Personal</h3>';
-        // Show all users, but redact those with higher level
+        usersList.innerHTML = '<h2>Lista de Personal</h2>';
         users.forEach(u => {
             const displayName = parseInt(u.level) > parseInt(currentUser.level) ? 
                 '[REDACTADO]' : u.username;
             usersList.innerHTML += `
-                <div class="user-item">
-                    <p>Usuario: ${displayName}</p>
+                <div class="personnel-card">
+                    <h3>${displayName}</h3>
                     <p>Nivel de acceso: ${u.level}</p>
+                    <div class="status-indicator ${u.level > currentUser.level ? 'standby' : 'active'}"></div>
                 </div>
             `;
         });
@@ -220,14 +220,15 @@ function displayPersonnel(currentUser) {
 function displayLocations(currentUser) {
     const locationsList = document.getElementById('locations-list');
     if (locationsList) {
-        locationsList.innerHTML = '<h3>Ubicaciones Clasificadas</h3>';
+        locationsList.innerHTML = '<h2>Ubicaciones Clasificadas</h2>';
         locations.forEach(loc => {
             if (parseInt(currentUser.level) >= parseInt(loc.level)) {
                 locationsList.innerHTML += `
-                    <div class="location-item">
-                        <h4>${loc.name}</h4>
+                    <div class="location-card">
+                        <h3>${loc.name}</h3>
                         <p>${loc.description}</p>
-                        <p>Nivel de acceso requerido: ${loc.level}</p>
+                        <div class="status-indicator secure"></div>
+                        <p class="access-level">Nivel ${loc.level}</p>
                     </div>
                 `;
             }
@@ -301,34 +302,35 @@ function displaySCPDetail() {
     
     if (scp && detailContainer && parseInt(currentUser.level) >= parseInt(scp.level)) {
         detailContainer.innerHTML = `
-            <div class="scp-full-detail">
-                <h2>SCP-${scp.id}</h2>
+            <div class="scp-content">
+                <div class="scp-header">
+                    <h2>SCP-${scp.id}</h2>
+                    <div class="danger-level">${scp.class}</div>
+                </div>
+                
                 <div class="scp-image">
                     <img src="images/${scp.image}" alt="SCP-${scp.id}">
                 </div>
-                <div class="scp-info">
-                    <h3>Clase: ${scp.class}</h3>
-                    <div class="section">
-                        <h4>Descripción</h4>
-                        <p>${scp.fullDescription}</p>
+                
+                <div class="containment-procedures">
+                    <h3>Procedimientos de Contención</h3>
+                    <p>${scp.containment}</p>
+                </div>
+                
+                <div class="scp-stats">
+                    <div class="stat-item">
+                        <h4>Clase</h4>
+                        <p>${scp.class}</p>
                     </div>
-                    <div class="section">
-                        <h4>Procedimientos de Contención</h4>
-                        <p>${scp.containment}</p>
+                    <div class="stat-item">
+                        <h4>Nivel</h4>
+                        <p>${scp.level}</p>
                     </div>
-                    <div class="section">
-                        <h4>Procedimientos Especiales</h4>
-                        <p>${scp.procedures}</p>
-                    </div>
-                    <div class="section">
-                        <h4>Registro de Incidentes</h4>
-                        ${scp.incidents.map(incident => `
-                            <div class="incident">
-                                <p>Fecha: ${incident.date}</p>
-                                <p>${incident.description}</p>
-                            </div>
-                        `).join('')}
-                    </div>
+                </div>
+                
+                <div class="scp-description">
+                    <h3>Descripción</h3>
+                    <p>${scp.fullDescription}</p>
                 </div>
             </div>
         `;
