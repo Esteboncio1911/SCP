@@ -304,44 +304,57 @@ function displaySCPDetail() {
     const urlParams = new URLSearchParams(window.location.search);
     const scpId = urlParams.get('id');
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    
     const scp = scps.find(s => s.id === scpId);
     const detailContainer = document.getElementById('scp-detail');
     
-    if (scp && detailContainer && parseInt(currentUser.level) >= parseInt(scp.level)) {
-        detailContainer.innerHTML = `
-            <div class="scp-content">
-                <div class="scp-header">
-                    <h2>SCP-${scp.id}</h2>
-                    <div class="danger-level">${scp.class}</div>
-                </div>
-                
-                <div class="scp-image">
-                    <img src="images/${scp.image}" alt="SCP-${scp.id}">
-                </div>
-                
-                <div class="containment-procedures">
-                    <h3>Procedimientos de Contención</h3>
-                    <p>${scp.containment}</p>
-                </div>
-                
-                <div class="scp-stats">
-                    <div class="stat-item">
-                        <h4>Clase</h4>
-                        <p>${scp.class}</p>
+    // Clear check for access level
+    if (scp && detailContainer) {
+        const userLevel = parseInt(currentUser.level);
+        const scpLevel = parseInt(scp.level);
+        
+        if (userLevel >= scpLevel) {
+            detailContainer.innerHTML = `
+                <div class="scp-content">
+                    <div class="scp-header">
+                        <h2>SCP-${scp.id}</h2>
+                        <div class="danger-level">${scp.class}</div>
                     </div>
-                    <div class="stat-item">
-                        <h4>Nivel</h4>
-                        <p>${scp.level}</p>
+                    
+                    <div class="scp-image">
+                        <img src="images/${scp.image}" alt="SCP-${scp.id}">
+                    </div>
+                    
+                    <div class="containment-procedures">
+                        <h3>Procedimientos de Contención</h3>
+                        <p>${scp.containment}</p>
+                    </div>
+                    
+                    <div class="scp-stats">
+                        <div class="stat-item">
+                            <h4>Clase</h4>
+                            <p>${scp.class}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Nivel</h4>
+                            <p>${scp.level}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="scp-description">
+                        <h3>Descripción</h3>
+                        <p>${scp.fullDescription}</p>
                     </div>
                 </div>
-                
-                <div class="scp-description">
-                    <h3>Descripción</h3>
-                    <p>${scp.fullDescription}</p>
+            `;
+        } else {
+            detailContainer.innerHTML = `
+                <div class="access-denied">
+                    <h2>ACCESO DENEGADO</h2>
+                    <p>Se requiere nivel ${scp.level} para acceder a este contenido.</p>
+                    <p>Su nivel actual es: ${userLevel}</p>
                 </div>
-            </div>
-        `;
+            `;
+        }
     }
 }
 
