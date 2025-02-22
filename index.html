@@ -8,24 +8,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="logo">
-                <span class="logo-text">FUNDACIÓN SCP</span>
-                <span class="classification">NIVEL-4 CLASIFICADO</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="scps.html">Lista SCPs</a></li>
-                <li><a href="personal.html">Personal</a></li>
-                <li><a href="locations.html">Ubicaciones</a></li>
-                <li><a href="reports.html">Informes</a></li>
-            </ul>
-            <div class="nav-controls">
-                <span class="user-info"></span>
-                <button id="logoutBtn" class="logout-btn">Cerrar Sesión</button>
-            </div>
+<nav class="main-nav">
+    <div class="nav-container">
+        <div class="logo">FUNDACIÓN SCP</div>
+        <div class="nav-links">
+            <button class="nav-button" onclick="location.href='scps.html'">SCPs</button>
+            <button class="nav-button" onclick="location.href='personal.html'">Personal</button>
+            <button class="nav-button" onclick="location.href='locations.html'">Ubicaciones</button>
+            <button class="nav-button" onclick="location.href='reports.html'">Informes</button>
+            <button class="nav-button" id="logoutBtn">Cerrar Sesión</button>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <main>
         <div class="hero-section">
