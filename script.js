@@ -1,4 +1,11 @@
-// Add this at the beginning of your script.js
+// Check login status immediately when page loads
+if (!window.location.pathname.includes('login.html')) {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (!currentUser) {
+        window.location.href = 'login.html';
+    }
+}
+
 const ADMIN_USERNAME = "admin";
 
 // Logging system that only works for admin
@@ -121,32 +128,30 @@ const scps = [
 }
 ];
 
+// Update the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    const path = window.location.pathname;
     
-    if (!currentUser) {
+    // Force login if no user is found
+    if (!currentUser && !window.location.pathname.includes('login.html')) {
         window.location.href = 'login.html';
         return;
     }
 
-    if (path.includes('scp-detail.html')) {
-        displaySCPDetail();
-        return; // Add this to prevent further execution
-    }
-
-    let requiredLevel = 1;
-
     const path = window.location.pathname;
     let requiredLevel = 1;
 
-    // Adjust required levels - remove the high requirements
-    if (path.includes('personal.html')) requiredLevel = 1; // Changed from 6
+    if (path.includes('scp-detail.html')) {
+        displaySCPDetail();
+        return;
+    }
+
+    // Your existing level checks
+    if (path.includes('personal.html')) requiredLevel = 1;
     else if (path.includes('locations.html')) requiredLevel = 2;
-    else if (path.includes('reports.html')) requiredLevel = 1; // Changed from 3
+    else if (path.includes('reports.html')) requiredLevel = 1;
     else if (path.includes('scps.html')) requiredLevel = 1;
 
-    // Only redirect if trying to access a completely restricted area
     if (parseInt(currentUser.level) < requiredLevel) {
         window.location.href = 'index.html';
         return;
@@ -156,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateUserInterface(currentUser);
     loadPageContent(currentUser);
 });
-
 
 function loadPageContent(currentUser) {
     const path = window.location.pathname;
