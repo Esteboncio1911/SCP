@@ -4,32 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundación SCP - Detalles SCP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="main-nav">
-        <div class="logo">FUNDACIÓN SCP</div>
-        <ul>
-            <li><a href="scps.html">Lista SCPs</a></li>
-            <li><a href="personal.html">Personal</a></li>
-            <li><a href="locations.html">Ubicaciones</a></li>
-            <li><a href="reports.html">Informes</a></li>
-        </ul>
-        <button id="logoutBtn">Cerrar Sesión</button>
+        <div class="nav-container">
+            <div class="logo">FUNDACIÓN SCP</div>
+            <div class="nav-links">
+                <button class="nav-button" onclick="location.href='scps.html'">SCPs</button>
+                <button class="nav-button" onclick="location.href='personal.html'">Personal</button>
+                <button class="nav-button" onclick="location.href='locations.html'">Ubicaciones</button>
+                <button class="nav-button" onclick="location.href='reports.html'">Informes</button>
+                <button class="nav-button" id="logoutBtn">Cerrar Sesión</button>
+            </div>
+        </div>
     </nav>
+
     <main>
-        <div id="scp-detail" class="restricted">
-            <!-- El contenido se generará dinámicamente -->
+        <div class="scp-detail-container restricted">
+            <div id="scp-detail">
+                <!-- Dynamic content will be loaded here -->
+            </div>
         </div>
     </main>
+
     <footer>
-        <p>⚠️ ADVERTENCIA: Acceso restringido solo a personal autorizado ⚠️</p>
+        <div class="footer-content">
+            <p class="warning">⚠️ ADVERTENCIA: Acceso restringido solo a personal autorizado ⚠️</p>
+        </div>
     </footer>
+
+    <div class="background-overlay"></div>
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            displaySCPDetail();
-        });
-    </script>
 </body>
 </html>
