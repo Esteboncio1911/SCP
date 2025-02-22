@@ -4,34 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundación SCP - Acceso Restringido</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="main-nav">
-        <div class="logo">FUNDACIÓN SCP</div>
-        <ul>
-            <li><a href="scps.html">Lista SCPs</a></li>
-            <li><a href="personal.html">Personal</a></li>
-            <li><a href="locations.html">Ubicaciones</a></li>
-            <li><a href="reports.html">Informes</a></li>
-        </ul>
-        <button id="logoutBtn">Cerrar Sesión</button>
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">FUNDACIÓN SCP</span>
+                <span class="classification">NIVEL-4 CLASIFICADO</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="scps.html">Lista SCPs</a></li>
+                <li><a href="personal.html">Personal</a></li>
+                <li><a href="locations.html">Ubicaciones</a></li>
+                <li><a href="reports.html">Informes</a></li>
+            </ul>
+            <div class="nav-controls">
+                <span class="user-info"></span>
+                <button id="logoutBtn" class="logout-btn">Cerrar Sesión</button>
+            </div>
+        </div>
     </nav>
+
     <main>
-        <div class="public">
-            <section id="hero">
-                <h1>FUNDACIÓN SCP</h1>
-                <p>Asegurar. Contener. Proteger.</p>
+        <div class="hero-section">
+            <h1 class="main-title">FUNDACIÓN SCP</h1>
+            <div class="motto">
+                <span class="motto-word">Asegurar.</span>
+                <span class="motto-word">Contener.</span>
+                <span class="motto-word">Proteger.</span>
+            </div>
+        </div>
+
+        <div class="content-sections">
+            <section class="info-section">
+                <h2>Información Clasificada</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Protocolos Activos</h3>
+                        <p>Estado actual de contención: VERDE</p>
+                        <div class="status-indicator active"></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>Alertas de Seguridad</h3>
+                        <p>Sin incidentes reportados</p>
+                        <div class="status-indicator secure"></div>
+                    </div>
+                    <div class="info-card">
+                        <h3>Personal en Servicio</h3>
+                        <p>Equipos de contención: Operativos</p>
+                        <div class="status-indicator standby"></div>
+                    </div>
+                </div>
             </section>
-            <section id="public-info">
-                <h2>Información Pública</h2>
-                <p>La Fundación SCP es una organización dedicada a la contención y estudio de anomalías.</p>
+
+            <section class="restricted-section" data-level="2">
+                <h2>Acceso Restringido</h2>
+                <div class="classified-content">
+                    <p>Información disponible según nivel de autorización.</p>
+                    <div id="classified-data"></div>
+                </div>
             </section>
         </div>
     </main>
+
     <footer>
-        <p>⚠️ ADVERTENCIA: Acceso restringido solo a personal autorizado ⚠️</p>
+        <div class="footer-content">
+            <p class="warning">⚠️ ADVERTENCIA: Acceso restringido solo a personal autorizado ⚠️</p>
+            <p class="security-level">NIVEL DE SEGURIDAD: ALFA</p>
+        </div>
     </footer>
+
+    <div class="background-overlay"></div>
     <script src="script.js"></script>
 </body>
 </html>
