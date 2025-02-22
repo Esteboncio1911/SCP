@@ -287,3 +287,36 @@ p {
     background: var(--accent-color);
     transform: translateY(-2px);
 }
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.location-card {
+    background: var(--secondary-color);
+    padding: 2rem;
+    border: 2px solid var(--accent-color);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.location-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.location-card .access-level {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--accent-color);
+}
+

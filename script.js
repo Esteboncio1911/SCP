@@ -129,6 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+    if (path.includes('scp-detail.html')) {
+        displaySCPDetail();
+    }
+
     const path = window.location.pathname;
     let requiredLevel = 1;
 
