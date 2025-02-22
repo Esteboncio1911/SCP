@@ -288,19 +288,25 @@ p {
     transform: translateY(-2px);
 }
 
+.locations-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
 .locations-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    padding: 2rem;
 }
 
 .location-card {
     background: var(--secondary-color);
-    padding: 2rem;
     border: 2px solid var(--accent-color);
-    transition: transform 0.3s ease;
+    padding: 2rem;
+    margin: 1rem;
     position: relative;
+    transition: all 0.3s ease;
 }
 
 .location-card:hover {
@@ -311,12 +317,10 @@ p {
 .location-card h3 {
     color: var(--accent-color);
     margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
-.location-card .access-level {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    color: var(--accent-color);
+.location-card p {
+    margin: 1rem 0;
+    line-height: 1.6;
 }
-

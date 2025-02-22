@@ -123,6 +123,7 @@ const scps = [
 
 document.addEventListener('DOMContentLoaded', function() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const path = window.location.pathname;
     
     if (!currentUser) {
         window.location.href = 'login.html';
@@ -131,7 +132,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (path.includes('scp-detail.html')) {
         displaySCPDetail();
+        return; // Add this to prevent further execution
     }
+
+    let requiredLevel = 1;
 
     const path = window.location.pathname;
     let requiredLevel = 1;
