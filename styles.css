@@ -231,6 +231,19 @@ body {
 }
 
 /* SCP List and Detail Styles */
+.scp-item, .personnel-card {
+    background: var(--secondary-color);
+    padding: 2rem;
+    border: 2px solid var(--accent-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.scp-item:hover, .personnel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
 .scp-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

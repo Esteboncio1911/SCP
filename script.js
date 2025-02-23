@@ -221,6 +221,40 @@ const extendedUserData = {
     }
 };
 
+window.onload = function() {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    
+    if (!currentUser && !window.location.pathname.includes('login.html')) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const path = window.location.pathname;
+    
+    // Handle specific detail pages
+    if (path.includes('scp-detail.html')) {
+        displaySCPDetail();
+    } else if (path.includes('personnel-detail.html')) {
+        displayPersonnelDetail();
+    } else if (path.includes('location-detail.html')) {
+        displayLocationDetail();
+    } else if (path.includes('report-detail.html')) {
+        displayReportDetail();
+    }
+
+    // Setup common elements
+    setupLogout();
+    updateUserInterface(currentUser);
+    loadPageContent(currentUser);
+};
+
+function showLocationDetail(locationName) {
+    window.location.href = `location-detail.html?id=${encodeURIComponent(locationName)}`;
+}
+
+function showReportDetail(reportTitle) {
+    window.location.href = `report-detail.html?id=${encodeURIComponent(reportTitle)}`;
+}
 
 // Update the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function() {
