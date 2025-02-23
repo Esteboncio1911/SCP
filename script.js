@@ -148,7 +148,6 @@ const extendedUserData = {
 document.addEventListener('DOMContentLoaded', function() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     
-    // Force login if no user is found
     if (!currentUser && !window.location.pathname.includes('login.html')) {
         window.location.href = 'login.html';
         return;
@@ -159,6 +158,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (path.includes('scp-detail.html')) {
         displaySCPDetail();
+        return;
+    } else if (path.includes('personnel-detail.html')) {
+        displayPersonnelDetail();
         return;
     }
 
@@ -196,8 +198,11 @@ function loadPageContent(currentUser) {
         displayReports(currentUser);
     } else if (path.includes('scps.html')) {
         displaySCPsList(currentUser);
+    } else if (path.includes('personnel-detail.html')) {
+        displayPersonnelDetail();
     }
 }
+
 
 // Update the showAdminPanel function
 function showAdminPanel() {
