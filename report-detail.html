@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundación SCP - Detalles de Informe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">FUNDACIÓN SCP</div>
+            <div class="nav-links">
+                <button class="nav-button" onclick="location.href='scps.html'">SCPs</button>
+                <button class="nav-button" onclick="location.href='personal.html'">Personal</button>
+                <button class="nav-button" onclick="location.href='locations.html'">Ubicaciones</button>
+                <button class="nav-button" onclick="location.href='reports.html'">Informes</button>
+                <button class="nav-button" id="logoutBtn">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="report-detail-container restricted">
+            <div id="report-detail">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p class="warning">⚠️ ADVERTENCIA: Acceso restringido solo a personal autorizado ⚠️</p>
+            <p class="security-level">NIVEL DE SEGURIDAD: ALFA</p>
+        </div>
+    </footer>
+
+    <div class="background-overlay"></div>
+    <script src="script.js"></script>
+</body>
+</html>

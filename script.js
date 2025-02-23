@@ -59,15 +59,57 @@ const users = [
 ];
 
 const locations = [
-    { name: "Sitio-19", description: "Instalación principal de contención", level: "2" },
-    { name: "Área-12", description: "Centro de investigación biológica", level: "2" },
-    { name: "Sector-D", description: "Almacén de objetos Keter", level: "3" }
+    {
+        name: "Sitio-19",
+        description: "Principal instalación de contención de SCPs humanoides. Ubicada en [REDACTADO], cuenta con más de 150 celdas de contención especializadas y laboratorios de investigación avanzada.",
+        level: 3,
+        status: "Activo"
+    },
+    {
+        name: "Área-14",
+        description: "Centro de investigación subterráneo especializado en entidades biológicas anómalas. Contiene invernaderos de contención y laboratorios de bioseguridad nivel 4.",
+        level: 4,
+        status: "Activo"
+    },
+    {
+        name: "Sector-28",
+        description: "Instalación de almacenamiento en el desierto para objetos de gran tamaño y anomalías dimensionales. Equipada con sistemas de supresión de realidad.",
+        level: 2,
+        status: "Activo"
+    },
+    {
+        name: "Base Polar-16",
+        description: "Instalación ártica para la contención de anomalías térmicas y criogénicas. Mantiene una temperatura constante de -40°C en sus áreas especializadas.",
+        level: 5,
+        status: "Activo"
+    }
 ];
 
 const reports = [
-    { title: "Informe 1123-A", description: "Brecha de contención SCP-173", date: "2023-10-01", level: "3" },
-    { title: "Informe 1124-B", description: "Experimento fallido D-Class", date: "2023-10-15", level: "2" },
-    { title: "Informe 1125-C", description: "Protocolo de emergencia", date: "2023-10-30", level: "3" }
+    {
+        title: "Incidente de Contención 239-B",
+        description: "Brecha de contención en el Sector-28 durante la transferencia del SCP-173. Tres agentes de seguridad fallecidos. Contención restaurada tras 47 minutos.",
+        date: "15/03/2023",
+        level: 4
+    },
+    {
+        title: "Experimento 45-A: SCP-049",
+        description: "Pruebas de interacción controlada entre SCP-049 y D-Class infectados con patógenos comunes. Resultados inconcluyentes pero prometedores.",
+        date: "22/05/2023",
+        level: 3
+    },
+    {
+        title: "Informe de Mantenimiento: Sitio-19",
+        description: "Actualización trimestral de sistemas de seguridad. Instalación de nuevos protocolos Scranton Reality Anchors en el ala este.",
+        date: "10/06/2023",
+        level: 2
+    },
+    {
+        title: "Análisis Post-Incidente XK-4",
+        description: "Evaluación detallada del intento de infiltración por parte del Caos Insurgente en Base Polar-16. Identificadas vulnerabilidades en protocolos de acceso.",
+        date: "30/07/2023",
+        level: 5
+    }
 ];
 
 const scps = [
@@ -290,15 +332,16 @@ function displayPersonnel(currentUser) {
 function displayLocations(currentUser) {
     const locationsList = document.getElementById('locations-list');
     if (locationsList) {
-        locationsList.innerHTML = '<h2>Ubicaciones Clasificadas</h2>';
+        locationsList.innerHTML = '';
         locations.forEach(loc => {
             if (parseInt(currentUser.level) >= parseInt(loc.level)) {
                 locationsList.innerHTML += `
-                    <div class="location-card">
+                    <div class="location-card" onclick="showLocationDetail('${loc.name}')">
                         <h3>${loc.name}</h3>
                         <p>${loc.description}</p>
                         <div class="status-indicator secure"></div>
                         <p class="access-level">Nivel ${loc.level}</p>
+                        <p class="read-more">Click para más detalles</p>
                     </div>
                 `;
             }
@@ -309,24 +352,15 @@ function displayLocations(currentUser) {
 function displayReports(currentUser) {
     const reportsList = document.getElementById('reports-list');
     if (reportsList) {
-        reportsList.innerHTML = '<h3>Informes Clasificados</h3>';
-        // Show all reports at or below user's level
+        reportsList.innerHTML = '';
         reports.forEach(report => {
             if (parseInt(currentUser.level) >= parseInt(report.level)) {
                 reportsList.innerHTML += `
-                    <div class="report-item">
+                    <div class="report-item" onclick="showReportDetail('${report.title}')">
                         <h4>${report.title}</h4>
                         <p>${report.description}</p>
-                        <p>Fecha: ${report.date}</p>
-                        <p>Nivel de acceso requerido: ${report.level}</p>
-                    </div>
-                `;
-            } else {
-                reportsList.innerHTML += `
-                    <div class="report-item">
-                        <h4>[INFORME REDACTADO]</h4>
-                        <p>[CONTENIDO CLASIFICADO]</p>
-                        <p>Nivel de acceso requerido: ${report.level}</p>
+                        <p class="report-date">${report.date}</p>
+                        <p class="read-more">Click para más detalles</p>
                     </div>
                 `;
             }
@@ -517,6 +551,102 @@ function renderFullPersonnelDetails(userData, userId, targetUser) {
             </div>
         </div>
     `;
+}
+
+function displayLocationDetail() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const locationName = urlParams.get('id');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const location = locations.find(l => l.name === locationName);
+    const detailContainer = document.getElementById('location-detail');
+    
+    if (location && detailContainer) {
+        const userLevel = parseInt(currentUser.level);
+        const locationLevel = parseInt(location.level);
+        
+        if (userLevel >= locationLevel) {
+            detailContainer.innerHTML = `
+                <div class="location-content">
+                    <div class="location-header">
+                        <h2>${location.name}</h2>
+                        <div class="security-level">Nivel ${location.level}</div>
+                    </div>
+                    
+                    <div class="location-description">
+                        <h3>Descripción General</h3>
+                        <p>${location.description}</p>
+                    </div>
+                    
+                    <div class="location-stats">
+                        <div class="stat-item">
+                            <h4>Estado</h4>
+                            <p>Activo</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Personal Asignado</h4>
+                            <p>█████</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            detailContainer.innerHTML = `
+                <div class="access-denied">
+                    <h2>ACCESO DENEGADO</h2>
+                    <p>Se requiere nivel ${location.level} para acceder a este contenido.</p>
+                    <p>Su nivel actual es: ${userLevel}</p>
+                </div>
+            `;
+        }
+    }
+}
+
+function displayReportDetail() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const reportTitle = urlParams.get('id');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const report = reports.find(r => r.title === reportTitle);
+    const detailContainer = document.getElementById('report-detail');
+    
+    if (report && detailContainer) {
+        const userLevel = parseInt(currentUser.level);
+        const reportLevel = parseInt(report.level);
+        
+        if (userLevel >= reportLevel) {
+            detailContainer.innerHTML = `
+                <div class="report-content">
+                    <div class="report-header">
+                        <h2>${report.title}</h2>
+                        <div class="report-date">${report.date}</div>
+                    </div>
+                    
+                    <div class="report-description">
+                        <h3>Descripción del Incidente</h3>
+                        <p>${report.description}</p>
+                    </div>
+                    
+                    <div class="report-details">
+                        <div class="detail-item">
+                            <h4>Estado</h4>
+                            <p>Archivado</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Clasificación</h4>
+                            <p>Nivel ${report.level}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            detailContainer.innerHTML = `
+                <div class="access-denied">
+                    <h2>ACCESO DENEGADO</h2>
+                    <p>Se requiere nivel ${report.level} para acceder a este contenido.</p>
+                    <p>Su nivel actual es: ${userLevel}</p>
+                </div>
+            `;
+        }
+    }
 }
 
 function updateUserInterface(user) {
