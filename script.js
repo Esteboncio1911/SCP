@@ -128,6 +128,22 @@ const scps = [
 }
 ];
 
+const extendedUserData = {
+    "investigador1": {
+        fullName: "Dr. Sarah Thompson",
+        specialization: "Contención Biológica",
+        yearsOfService: 5,
+        clearanceAreas: ["Sector-19", "Área-12"],
+        history: [
+            { date: "2023-01", event: "Promoción a Nivel 1" },
+            { date: "2022-06", event: "Primera contención exitosa SCP-173" }
+        ],
+        status: "Activo",
+        assignedSCPs: ["173", "049"]
+    },
+    // Add data for other users...
+};
+
 // Update the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -219,10 +235,11 @@ function displayPersonnel(currentUser) {
             const displayName = parseInt(u.level) > parseInt(currentUser.level) ? 
                 '[REDACTADO]' : u.username;
             usersList.innerHTML += `
-                <div class="personnel-card">
+                <div class="personnel-card" onclick="window.location.href='personnel-detail.html?id=${u.username}'">
                     <h3>${displayName}</h3>
                     <p>Nivel de acceso: ${u.level}</p>
                     <div class="status-indicator ${u.level > currentUser.level ? 'standby' : 'active'}"></div>
+                    <p class="read-more">Click para más detalles</p>
                 </div>
             `;
         });
@@ -359,6 +376,94 @@ function displaySCPDetail() {
                 </div>
             `;
         }
+    }
+}
+
+function displayPersonnelDetail() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('id');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const userData = extendedUserData[userId];
+    const targetUser = users.find(u => u.username === userId);
+    const detailContainer = document.getElementById('personnel-detail');
+    
+    if (userData && detailContainer && targetUser && 
+        parseInt(currentUser.level) >= parseInt(targetUser.level)) {
+        detailContainer.innerHTML = `
+            <div class="personnel-content">
+                <div class="personnel-header">
+                    <h2>${userData.fullName}</h2>
+                    <p class="designation">${userId}</p>
+                </div>
+                
+                <div class="personnel-stats">
+                    <div class="stat-item">
+                        <h4>Especialización</h4>
+                        <p>${userData.specialization}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Años de Servicio</h4>
+                        <p>${userData.yearsOfService}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Estado</h4>
+                        <p>${userData.status}</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Nivel de Acceso</h4>
+                        <p>${targetUser.level}</p>
+                    </div>
+                </div>
+                
+                <div class="personnel-history">
+                    <h3>Historial</h3>
+                    ${userData.history.map(h => `
+                        <div class="history-item">
+                            <span class="history-date">${h.date}</span>
+                            <span class="history-event">${h.event}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="clearance-areas">
+                    <h3>Áreas Autorizadas</h3>
+                    <div class="areas-grid">
+                        ${userData.clearanceAreas.map(area => `
+                            <div class="area-item">
+                                <span class="area-name">${area}</span>
+                                <div class="status-indicator active"></div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="assigned-scps">
+                    <h3>SCPs Asignados</h3>
+                    <div class="scps-grid">
+                        ${userData.assignedSCPs.map(scp => `
+                            <div class="assigned-scp-item" onclick="window.location.href='scp-detail.html?id=${scp}'">
+                                <h4>SCP-${scp}</h4>
+                                <p class="read-more">Ver detalles</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="additional-info">
+                    <h3>Notas Adicionales</h3>
+                    <p>${userData.notes || 'Sin notas adicionales.'}</p>
+                </div>
+            </div>
+        `;
+    } else {
+        detailContainer.innerHTML = `
+            <div class="access-denied">
+                <h2>ACCESO DENEGADO</h2>
+                <p>Se requiere nivel ${targetUser ? targetUser.level : '?'} para acceder a este contenido.</p>
+                <p>Su nivel actual es: ${currentUser.level}</p>
+                <button class="nav-button" onclick="window.location.href='personal.html'">Volver a Personal</button>
+            </div>
+        `;
     }
 }
 
