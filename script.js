@@ -141,8 +141,44 @@ const extendedUserData = {
         status: "Activo",
         assignedSCPs: ["173", "049"]
     },
-    // Add data for other users...
+    "investigador2": {
+        fullName: "Dr. Michael Chen",
+        specialization: "Investigación Paranormal",
+        yearsOfService: 8,
+        clearanceAreas: ["Sector-19", "Área-12", "Sector-D"],
+        history: [
+            { date: "2023-03", event: "Promoción a Nivel 2" },
+            { date: "2022-08", event: "Investigación exitosa SCP-049" }
+        ],
+        status: "Activo",
+        assignedSCPs: ["049", "1002"]
+    },
+    "admin": {
+        fullName: "Director James Wright",
+        specialization: "Administración y Supervisión",
+        yearsOfService: 15,
+        clearanceAreas: ["Todos los sectores"],
+        history: [
+            { date: "2023-05", event: "Nombramiento como Director" },
+            { date: "2022-12", event: "Supervisión exitosa Proyecto-X" }
+        ],
+        status: "Activo",
+        assignedSCPs: ["173", "049", "1002"]
+    },
+    "omni": {
+        fullName: "O5-7",
+        specialization: "Supervisión Global",
+        yearsOfService: 25,
+        clearanceAreas: ["Acceso Total"],
+        history: [
+            { date: "2023-06", event: "Autorización Protocolo Omega" },
+            { date: "2023-01", event: "Supervisión Proyecto Ómega" }
+        ],
+        status: "Activo",
+        assignedSCPs: ["Todos"]
+    }
 };
+
 
 // Update the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function() {
